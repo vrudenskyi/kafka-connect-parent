@@ -260,6 +260,11 @@
 			<name>repo.spring.io</name>
 			<url>http://repo.spring.io/plugins-release/</url>
 		</repository>
+		<repository>
+			<id>vrudenskyi-kafka-connect</id>
+			<name>vrudenskyi-kafka-connect</name>
+			<url>https://dl.bintray.com/vrudenskyi/kafka-connect</url>
+		</repository>
 	</repositories>
 
 
