@@ -7,14 +7,12 @@
 		<maven>3.3.0</maven>
 	</prerequisites>
 
-
 	<groupId>com.mckesson.kafka.connect</groupId>
 	<artifactId>kafka-connect-parent</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>kafka-connect-parent</name>
 	<description>Parent pom for McKesson Kafka Connect projects.</description>
-
 
 	<modules>
 		<module>checkstyle</module>
@@ -28,25 +26,20 @@
 		<!-- if true then test resources are not copies to target/test-classes: 
 			https://bugs.eclipse.org/bugs/show_bug.cgi?id=407636 -->
 		<maven.test.skip>false</maven.test.skip>
-		<skipTests>true</skipTests>
+		<skipTests>false</skipTests>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-
 		<kafka.version>2.3.0</kafka.version>
 
 		<!--tests -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13</junit.version>
 		<powermock.version>1.6.6</powermock.version>
 		<easymock.version>3.4</easymock.version>
-		<junit.surefire.plugin.version>1.0.0-M6</junit.surefire.plugin.version>
-
+		<junit.surefire.plugin.version>3.0.0-M5</junit.surefire.plugin.version>
 		<kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
 		<connect.component.name>Parent</connect.component.name>
 		<connect.component.componentTypes>source</connect.component.componentTypes>
 	</properties>
-
-
-
 
 	<dependencyManagement>
 		<dependencies>
@@ -61,7 +54,6 @@
 				<artifactId>pollable-source</artifactId>
 				<version>${global.version}</version>
 			</dependency>
-
 			<!-- kafka deps -->
 			<dependency>
 				<groupId>org.apache.kafka</groupId>
@@ -73,7 +65,6 @@
 				<artifactId>connect-api</artifactId>
 				<version>${kafka.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.apache.kafka</groupId>
 				<artifactId>connect-runtime</artifactId>
@@ -104,9 +95,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -118,7 +106,6 @@
 			<artifactId>connect-runtime</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- TEST -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -145,9 +132,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-
-
 
 	<build>
 		<plugins>
@@ -193,11 +177,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
+				<version>${junit.surefire.plugin.version}</version>
 				<dependencies>
 					<dependency>
-						<groupId>org.junit.platform</groupId>
-						<artifactId>junit-platform-surefire-provider</artifactId>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
 						<version>${junit.surefire.plugin.version}</version>
 					</dependency>
 				</dependencies>
@@ -206,7 +190,7 @@
 						<exclude>**/*IT.java</exclude>
 						<exclude>**/*IntegrationTest.java</exclude>
 					</excludes>
-				</configuration>
+				</configuration>				
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -235,8 +219,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
 		</plugins>
 
 		<resources>
@@ -247,7 +229,6 @@
 		</resources>
 
 	</build>
-
 
 	<repositories>
 		<repository>
@@ -267,76 +248,7 @@
 		</repository>
 	</repositories>
 
-
 	<profiles>
-		<profile>
-			<id>integration-test</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>build-helper-maven-plugin</artifactId>
-						<version>1.9.1</version>
-						<executions>
-							<execution>
-								<id>add-integration-test-sources</id>
-								<phase>generate-test-sources</phase>
-								<goals>
-									<goal>add-test-source</goal>
-								</goals>
-								<configuration>
-									<sources>
-										<source>src/integration-test/java</source>
-									</sources>
-								</configuration>
-							</execution>
-							<execution>
-								<id>add-integration-test-resources</id>
-								<phase>generate-test-resources</phase>
-								<goals>
-									<goal>add-test-resource</goal>
-								</goals>
-								<configuration>
-									<resources>
-										<resource>
-											<filtering>true</filtering>
-											<directory>src/integration-test/resources</directory>
-										</resource>
-									</resources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.19</version>
-						<dependencies>
-							<dependency>
-								<groupId>org.junit.platform</groupId>
-								<artifactId>junit-platform-surefire-provider</artifactId>
-								<version>${junit.surefire.plugin.version}</version>
-							</dependency>
-						</dependencies>
-						<executions>
-							<execution>
-								<id>integration-tests</id>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-								<configuration>
-									<includes>
-										<include>**/*IT.java</include>
-										<include>**/*IntegrationTest.java</include>
-									</includes>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 		<profile>
 			<id>confluent-hub</id>
 			<build>
@@ -353,7 +265,6 @@
 								<configuration>
 									<supportProviderName>V.Rudenskyi</supportProviderName>
 									<supportSummary>Support provided through community involvement</supportSummary>
-
 									<ownerUsername>vrudenskyi</ownerUsername>
 									<ownerType>private</ownerType>
 									<ownerName>Vitalii Rudenskyi</ownerName>
