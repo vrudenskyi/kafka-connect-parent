@@ -28,7 +28,7 @@
 		<maven.test.skip>false</maven.test.skip>
 		<skipTests>false</skipTests>
 		<timestamp>${maven.build.timestamp}</timestamp>
-		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
 		<kafka.version>2.3.0</kafka.version>
 
 		<!--tests -->
