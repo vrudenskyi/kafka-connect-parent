@@ -234,12 +234,12 @@
 		<repository>
 			<id>confluent</id>
 			<name>Confluent</name>
-			<url>http://packages.confluent.io/maven/</url>
+			<url>https://packages.confluent.io/maven/</url>
 		</repository>
 		<repository>
 			<id>repo.spring.io</id>
 			<name>repo.spring.io</name>
-			<url>http://repo.spring.io/plugins-release/</url>
+			<url>https://repo.spring.io/plugins-release/</url>
 		</repository>
 		<repository>
 			<id>vrudenskyi-kafka-connect</id>
