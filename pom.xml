@@ -32,7 +32,7 @@
 		<kafka.version>2.3.0</kafka.version>
 
 		<!--tests -->
-		<junit.version>4.13</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<powermock.version>1.6.6</powermock.version>
 		<easymock.version>3.4</easymock.version>
 		<junit.surefire.plugin.version>3.0.0-M5</junit.surefire.plugin.version>
