@@ -29,7 +29,7 @@
 		<skipTests>false</skipTests>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
-		<kafka.version>2.3.0</kafka.version>
+		<kafka.version>5.3.0-ccs</kafka.version>
 
 		<!--tests -->
 		<junit.version>4.13</junit.version>
